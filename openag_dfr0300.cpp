@@ -34,8 +34,8 @@
  //OneWire::_w_oneWire(5);
 
  void Dfr0300::begin(){
-   Serial2.begin(9600);
-   Serial2.println("Hi");
+   Serial.begin(9600);
+   //Serial2.println("Hi");
    _time_of_last_query = 0;
    _ec_calibration_offset = 0.15;
  }
@@ -63,7 +63,7 @@
  
  void Dfr0300::update(){
    if (millis() - _time_of_last_query > _min_update_interval){
-     Serial2.println("HiUpdate");
+     //Serial2.println("HiUpdate");
      getData();
      _time_of_last_query = millis();
    }
@@ -71,6 +71,7 @@
  
  bool Dfr0300::get_water_electrical_conductivity(std_msgs::Float32 &msg){
    msg.data = _water_electrical_conductivity;
+   Serial.println(_water_electrical_conductivity);
    bool res = _send_water_electrical_conductivity;
    _send_water_electrical_conductivity = false;
    return res;
@@ -79,7 +80,7 @@
 //.......................................Private.......................................//
 
  float Dfr0300::getData(void){
-   Serial2.println("HiData");
+   //Serial2.println("HiData");
    int analog_sum = 0;
    const int samples = 40;
    _send_water_electrical_conductivity = true;
