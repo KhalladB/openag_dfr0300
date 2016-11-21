@@ -34,7 +34,7 @@
  //OneWire::_w_oneWire(5);
 
  void Dfr0300::begin(){
-   Serial.begin(9600);
+   //Serial.begin(9600);
    //Serial2.println("Hi");
    _time_of_last_query = 0;
    _ec_calibration_offset = 0.15;
@@ -71,7 +71,6 @@
  
  bool Dfr0300::get_water_electrical_conductivity(std_msgs::Float32 &msg){
    msg.data = _water_electrical_conductivity;
-   Serial.println(_water_electrical_conductivity);
    bool res = _send_water_electrical_conductivity;
    _send_water_electrical_conductivity = false;
    return res;
